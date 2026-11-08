@@ -1,0 +1,14 @@
+services:
+  pyrecrawl:
+    build:
+      context: .
+      dockerfile: Dockerfile.pyrecrawl
+    container_name: pyrecrawl
+    environment:
+      - PYRECRAWL_NO_TELEMETRY=1
+    restart: unless-stopped
+    volumes:
+      - pyrecrawl_cache:/root/.cache/pyrecrawl
+
+volumes:
+  pyrecrawl_cache:
