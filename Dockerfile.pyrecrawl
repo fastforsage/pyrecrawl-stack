@@ -7,9 +7,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
+# Устанавливаем и PyreCrawl, и MCPO (прокси), и браузеры
 RUN uv venv && \
     . .venv/bin/activate && \
-    uv pip install pyrecrawl && \
+    uv pip install pyrecrawl mcpo && \
     pyrecrawl setup
 
-CMD ["uv", "run", "pyrecrawl"]
+EXPOSE 8000
+
+# Запускаем MCPO, который оборачивает PyreCrawl в HTTP
+CMD ["uv", "run", "mcpo", "--host", "0.0.0.0", "--port", "8000", "--", "uv", "run", "pyrecrawl"]
