@@ -4,6 +4,8 @@ services:
       context: .
       dockerfile: Dockerfile.pyrecrawl
     container_name: pyrecrawl
+    ports:
+      - "8000:8000"
     environment:
       - PYRECRAWL_NO_TELEMETRY=1
     restart: unless-stopped
