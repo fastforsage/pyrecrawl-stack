@@ -37,7 +37,7 @@ docker run -d \
 ```yaml
 services:
   pyrecrawl:
-    image: fastforsage/pyrecrawl-mcp:latest
+    image: docker.io/fastforsage/pyrecrawl-mcp:latest
     container_name: pyrecrawl
     ports:
       - "8000:8000"
