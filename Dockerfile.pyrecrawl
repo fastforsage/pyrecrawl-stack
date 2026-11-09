@@ -12,7 +12,8 @@ RUN uv venv && \
     . .venv/bin/activate && \
     uv pip install pyrecrawl && \
     uv pip install "mcpo==0.0.7" fastapi uvicorn && \
-    pyrecrawl setup
+    pyrecrawl setup && \
+    uv run patchright install chromium
 
 EXPOSE 8000
 
