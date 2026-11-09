@@ -10,7 +10,7 @@ WORKDIR /app
 # Устанавливаем и PyreCrawl, и MCPO (прокси), и браузеры
 RUN uv venv && \
     . .venv/bin/activate && \
-    uv pip install pyrecrawl mcpo && \
+    uv pip install --upgrade pyrecrawl mcpo fastapi uvicorn && \
     pyrecrawl setup
 
 EXPOSE 8000
