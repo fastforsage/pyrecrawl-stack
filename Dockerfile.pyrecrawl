@@ -2,7 +2,7 @@ FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget gnupg libnss3 libatk-bridge2.0-0 libdrm2 \
-    libxkbcommon0 libgbm1 libasound2 \
+    libxkbcommon0 libgbm1 libasound2 libatomic1 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
