@@ -7,14 +7,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-# Устанавливаем и PyreCrawl, и MCPO (прокси), и браузеры
+# Ставим pyrecrawl отдельно, затем mcpo нужной версии + совместимые fastapi/uvicorn
 RUN uv venv && \
     . .venv/bin/activate && \
     uv pip install pyrecrawl && \
-    uv pip install "mcpo>=0.0.20" fastapi uvicorn && \
+    uv pip install "mcpo==0.0.7" fastapi uvicorn && \
     pyrecrawl setup
 
 EXPOSE 8000
 
-# Запускаем MCPO, который оборачивает PyreCrawl в HTTP
 CMD ["uv", "run", "mcpo", "--host", "0.0.0.0", "--port", "8000", "--", "uv", "run", "pyrecrawl"]
